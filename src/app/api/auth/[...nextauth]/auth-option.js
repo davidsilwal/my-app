@@ -1,4 +1,3 @@
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 function parseJwt(token) {
@@ -8,7 +7,7 @@ function parseJwt(token) {
     return JSON.parse(atob(base64));
 }
 
-const handler = NextAuth({
+export const authOptions = {
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -100,5 +99,4 @@ const handler = NextAuth({
             return session
         }
     }
-});
-export { handler as GET, handler as POST }
+};

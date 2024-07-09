@@ -1,7 +1,6 @@
-"use client"; // Indicates that this module is client-side code.
+'use client';
 
 import { signIn } from "next-auth/react"; // Import the signIn function from NextAuth for authentication.
-import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation"; // Import Next.js navigation utilities.
 import { ChangeEvent, useState } from "react"; // Import React hooks for managing component state.
 
@@ -15,7 +14,7 @@ export const LoginForm = () => {
     const [error, setError] = useState(""); // State for handling errors during authentication.
 
     const searchParams = useSearchParams(); // Get query parameters from the URL.
-    const callbackUrl = searchParams.get("callbackUrl") || "/dashboard"; // Define a callback URL or use a default one.
+    const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard"; // Define a callback URL or use a default one.
 
     // Handle form submission
     const onSubmit = async (e: React.FormEvent) => {
@@ -23,6 +22,8 @@ export const LoginForm = () => {
         try {
             setLoading(true); // Set loading state to true.
             setFormValues({ email: "", password: "" }); // Clear form input values.
+
+            debugger;
 
             // Attempt to sign in using the credentials (email and password).
             const res = await signIn("credentials", {

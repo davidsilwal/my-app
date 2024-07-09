@@ -21,7 +21,9 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
+
 export function UserNav() {
+
   return (
     <DropdownMenu>
       <TooltipProvider disableHoverableContent>
@@ -55,7 +57,7 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem className="hover:cursor-pointer" asChild>
-            <Link href="/dashboard" className="flex items-center">
+            <Link href="/admin/dashboard" className="flex items-center">
               <LayoutGrid className="w-4 h-4 mr-3 text-muted-foreground" />
               Dashboard
             </Link>
@@ -67,8 +69,10 @@ export function UserNav() {
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => {}}>
+
+        <DropdownMenuItem className="hover:cursor-pointer" onClick={() => { }}>
           <LogOut className="w-4 h-4 mr-3 text-muted-foreground" />
           Sign out
         </DropdownMenuItem>

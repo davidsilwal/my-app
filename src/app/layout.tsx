@@ -8,24 +8,34 @@ import AdminPanelLayout from "@/components/admin-panel-layout";
 import { ContentLayout } from "@/components/content-layout";
 import { NextAuthProvider } from "./auth-provider";
 
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/app/api/auth/[...nextauth]/auth-option"
+import { redirect } from "next/navigation";
+import QueryClientContextProvider from "./QueryClientContextProvider";
+
 export const metadata: Metadata =
 {
   title: "David Silwal"
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const session = await getServerSession(authOptions)
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AdminPanelLayout>
             <NextAuthProvider>
-              <ContentLayout children={children} >
-              </ContentLayout>
+              <QueryClientContextProvider>
+                <ContentLayout children={children} >
+                </ContentLayout>
+              </QueryClientContextProvider>
             </NextAuthProvider>
           </AdminPanelLayout>
         </ThemeProvider>
