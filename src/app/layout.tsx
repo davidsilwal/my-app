@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import AdminPanelLayout from "@/components/admin-panel-layout";
 import { ContentLayout } from "@/components/content-layout";
+import { NextAuthProvider } from "./auth-provider";
 
 export const metadata: Metadata =
 {
@@ -22,8 +23,10 @@ export default function RootLayout({
       <body className={GeistSans.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AdminPanelLayout>
-            <ContentLayout children={children} >
-            </ContentLayout>
+            <NextAuthProvider>
+              <ContentLayout children={children} >
+              </ContentLayout>
+            </NextAuthProvider>
           </AdminPanelLayout>
         </ThemeProvider>
       </body>
