@@ -14,7 +14,7 @@ export const LoginForm = () => {
     const [error, setError] = useState(""); // State for handling errors during authentication.
 
     const searchParams = useSearchParams(); // Get query parameters from the URL.
-    const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard"; // Define a callback URL or use a default one.
+    const callbackUrl = searchParams.get("callbackUrl") || "/admin"; // Define a callback URL or use a default one.
 
     // Handle form submission
     const onSubmit = async (e: React.FormEvent) => {
@@ -23,7 +23,6 @@ export const LoginForm = () => {
             setLoading(true); // Set loading state to true.
             setFormValues({ email: "", password: "" }); // Clear form input values.
 
-            debugger;
 
             // Attempt to sign in using the credentials (email and password).
             const res = await signIn("credentials", {
@@ -32,6 +31,8 @@ export const LoginForm = () => {
                 password: formValues.password,
                 callbackUrl
             });
+
+            debugger;
 
             setLoading(false); // Set loading state back to false.
 
